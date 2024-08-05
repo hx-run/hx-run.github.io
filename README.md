@@ -15,5 +15,3 @@ Welcome to my space, where I dive into the depths of computer science, artificia
 
 - [Email](mailto:info@principai.co)
 - [Twitter](https://twitter.com/hx-run)
-
-Explore, learn, and engage with cutting-edge research and ideas. Happy reading!
