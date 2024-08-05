@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<div id="post">
+{{ content }}
+</div>
+
+<div id="related">
+  <h2>Related Notes</h2>
+  <ul class="posts">
+    {% for note in site.related_notes limit:3 %}
+      <li><span>{{ note.date | date_to_string }}</span> &raquo; <a href="{{ note.url }}">{{ note.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
