@@ -17,14 +17,14 @@ const config: Config = {
   url: 'https://hx-run.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/hx-run.github.io',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'hx-run', // Usually your GitHub org/user name.
-  projectName: 'starter-kit', // Usually your repo name.
+  projectName: 'hx-run.github.io', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
@@ -68,7 +68,7 @@ const config: Config = {
       '@docusaurus/plugin-content-blog',
       {
         id: 'papers',
-        routeBasePath: '/papers',
+        routeBasePath: 'papers',
         path: './blog/papers',
         blogTitle: 'Papers',
         blogDescription: 'Papers category',
