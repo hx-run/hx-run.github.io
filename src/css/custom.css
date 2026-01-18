@@ -332,9 +332,29 @@ article > header:has(h2) > div {
   margin: 0 !important;
 }
 
+article:has(header h2) > footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+}
+
+/* Disable grid columns inside footer */
+article:has(header h2) > footer > .col {
+  width: auto;
+  flex: none;
+}
+
+/* Keep Read more inline */
+article:has(header h2) > footer a {
+  white-space: nowrap;
+}
+
 @media (max-width: 640px) {
   /* Blog list — mobile layout */
   article > header:has(h2) {
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.15rem;
