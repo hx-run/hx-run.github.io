@@ -1,0 +1,284 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-font-family-base: 'Courier New', Courier, monospace;
+  --ifm-color-primary: #a00;
+  --ifm-color-primary-dark: #a00;
+  --ifm-font-color-base: #5f5f5fcd;
+  --ifm-color-primary-darker: #aa7f00f6;
+  --ifm-color-primary-darkest: #725703f6;
+  --ifm-color-primary-light: #e2b93ef6;
+  --ifm-color-primary-lighter: #e6bf4af6;
+  --ifm-color-primary-lightest: #f0cf6af6;
+  --ifm-color-hero-banner: #2a2720;
+  --ifm-color-feature-banner: #eeb821;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #eeb821;
+  --ifm-color-primary-dark: #eeb821;
+  --ifm-font-color-base: #c7c7c3cd;
+  --ifm-color-primary-darker: #aa7f00f6;
+  --ifm-color-primary-darkest: #725703f6;
+  --ifm-color-primary-light: #e2b93ef6;
+  --ifm-color-primary-lighter: #e6bf4af6;
+  --ifm-color-primary-lightest: #f0cf6af6;
+  --ifm-color-hero-banner: #eeb821;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #1e1e1e; /* dark mode uyum */
+  color: #888;
+}
+
+body {
+  font-weight: 600;
+}
+
+/* Hide "Recent posts" heading */
+aside nav[aria-label*="Blog"] > div:first-child {
+  display: none;
+}
+
+/* Main container for timeline */
+aside nav[aria-label*="Blog"] > div[role="group"] {
+  position: relative;
+  padding-right: 6px;
+}
+
+/* Year headings container */
+aside nav[aria-label*="Blog"] > div[role="group"] > h3 {
+  position: relative;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+  text-align: right;
+  padding-right: 20px;
+}
+
+/* Year circle markers */
+aside nav[aria-label*="Blog"] > div[role="group"] > h3::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  border: 2px thin var(--ifm-color-emphasis-300);
+  border-radius: 50%;
+  background-color: #1e1e1e;
+  z-index: 2;
+  box-shadow: 0 0 0 2px var(--ifm-color-emphasis-300);
+  transition: all 0.3s ease;
+}
+
+/* Year circle hover effect */
+aside nav[aria-label*="Blog"] > div[role="group"] > h3:hover::before {
+  border-color: #a00;
+  background-color: #a00;
+  transform: scale(1.15);
+  box-shadow: 0 0 0 4px var(--ifm-color-emphasis-300), 0 0 8px rgba(238, 184, 33, 0.3);
+}
+
+[data-theme='dark'] aside nav[aria-label*="Blog"] > div[role="group"] > h3:hover::before {
+  border-color: #eeb821;
+  background-color: #eeb821;
+  transform: scale(1.15);
+  box-shadow: 0 0 0 4px var(--ifm-color-emphasis-300), 0 0 8px rgba(238, 184, 33, 0.3);
+}
+
+/* Year text hover effect */
+aside nav[aria-label*="Blog"] > div[role="group"] > h3:hover {
+  color: #a00;
+  cursor: pointer;
+}
+
+[data-theme='dark'] aside nav[aria-label*="Blog"] > div[role="group"] > h3:hover {
+  color: #eeb821;
+  cursor: pointer;
+}
+
+/* Vertical timeline line through all groups */
+aside nav[aria-label*="Blog"]::before {
+  content: '';
+  position: absolute;
+  right: 9px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--ifm-color-emphasis-300);
+  z-index: 1;
+}
+
+/* Posts list under each year */
+aside nav[aria-label*="Blog"] ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 30px;
+  text-align: right;
+}
+
+/* Individual post items */
+aside nav[aria-label*="Blog"] ul > li {
+  position: relative;
+  margin-bottom: 15px;
+  padding-right: 25px;
+}
+
+/* Post circle markers (smaller) */
+aside nav[aria-label*="Blog"] ul > li::before {
+  content: '';
+  position: absolute;
+  right: 2px;
+  top: 6px;
+  width: 4px;
+  height: 4px;
+  border: 0px thin var(--ifm-color-emphasis-300);
+  border-radius: 50%;
+  background-color: #1e1e1e;
+  z-index: 2;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 2px var(--ifm-color-emphasis-300);
+}
+
+/* Post circle hover effect */
+aside nav[aria-label*="Blog"] ul > li:hover::before {
+  border-color: #a00;
+  background-color: #aa0000;
+  transform: scale(1.5);
+  box-shadow: 0 0 0 3px var(--ifm-color-emphasis-300), 0 0 6px rgb(170, 0, 0,0.4);;
+}
+/* Post circle hover effect */
+[data-theme='dark'] aside nav[aria-label*="Blog"] ul > li:hover::before {
+  border-color: #eeb821;
+  background-color: #eeb821;
+  transform: scale(1.5);
+  box-shadow: 0 0 0 3px var(--ifm-color-emphasis-300), 0 0 6px rgba(238, 184, 33, 0.4);
+}
+
+/* Post link styling */
+aside nav[aria-label*="Blog"] ul > li > a {
+  color: var(--ifm-font-color-base);
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Post link hover effect */
+aside nav[aria-label*="Blog"] ul > li:hover > a {
+  color: #a00;
+  padding-right: 5px;
+}
+
+[data-theme='dark'] aside nav[aria-label*="Blog"] ul > li:hover > a {
+  color: #eeb821;
+  padding-right: 5px;
+}
+
+aside nav[aria-label*="Blog"] ul > li > a:hover {
+  color: #a00;
+  padding-right: 5px;
+}
+
+[datk-theme='dark'] aside nav[aria-label*="Blog"] ul > li > a:hover {
+  color: #eeb821;
+  padding-right: 5px;
+}
+/* Active/selected post styling - circle içi dolu olsun */
+aside nav[aria-label*="Blog"] ul > li > a[aria-current="page"] ~ ::before,
+aside nav[aria-label*="Blog"] ul > li:has(> a[aria-current="page"])::before,
+aside nav[aria-label*="Blog"] ul > li.active::before {
+  border-color: #a00 !important;
+  background-color: #a00 !important;
+  box-shadow: 0 0 0 4px var(--ifm-color-emphasis-300), 0 0 10px rgba(238, 184, 33, 0.5) !important;
+}
+
+[data-theme='dark'] aside nav[aria-label*="Blog"] ul > li > a[aria-current="page"] ~ ::before,
+[data-theme='dark'] aside nav[aria-label*="Blog"] ul > li:has(> a[aria-current="page"])::before,
+[data-theme='dark'] aside nav[aria-label*="Blog"] ul > li.active::before {
+  border-color: #eeb821 !important;
+  background-color: #eeb821 !important;
+  box-shadow: 0 0 0 4px var(--ifm-color-emphasis-300), 0 0 10px rgba(238, 184, 33, 0.5) !important;
+}
+
+aside nav[aria-label*="Blog"] ul > li > a[aria-current="page"],
+aside nav[aria-label*="Blog"] ul > li.active > a {
+  color: #a00;
+  font-weight: 600;
+}
+
+[data-theme='dark'] aside nav[aria-label*="Blog"] ul > li > a[aria-current="page"],
+[data-theme='dark'] aside nav[aria-label*="Blog"] ul > li.active > a {
+  color: #eeb821;
+  font-weight: 600;
+}
+
+.avatar__photo {
+    border-radius: 50%;
+    display: block;
+    height: 30px;
+    overflow: hidden;
+    width: 30px;
+  }
+
+.navbar__brand {
+  margin-right: 9rem;
+}
+.navbar__item {
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 996px) {
+  aside nav[aria-label*="Blog"] > div[role="group"] {
+    padding-right: 30px;
+  }
+  
+  aside nav[aria-label*="Blog"]::before {
+    right: 8px;
+  }
+  
+  aside nav[aria-label*="Blog"] > div[role="group"] > h3,
+  aside nav[aria-label*="Blog"] ul > li {
+    padding-right: 25px;
+  }
+  
+  aside nav[aria-label*="Blog"] ul > li::before {
+    right: 2px;
+  }
+}
+
+/* Dark mode compatibility */
+html[data-theme='dark'] aside nav[aria-label*="Blog"] > div[role="group"] > h3::before,
+html[data-theme='dark'] aside nav[aria-label*="Blog"] ul > li::before {
+  box-shadow: 0 0 0 5px var(--ifm-color-emphasis-300);
+}
+
+html[data-theme='dark'] aside nav[aria-label*="Blog"] ul > li:hover::before {
+  box-shadow: 0 0 0 4px var(--ifm-color-emphasis-300), 0 0 6px rgba(238, 184, 33, 0.4);
+}
+
+.footer {
+  background-color: #fff;
+  padding: 15px;
+}
+
+[data-theme='dark'] .footer {
+  background-color: #1b1b1d;
+  padding: 15px;
+}

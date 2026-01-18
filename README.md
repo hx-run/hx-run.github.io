@@ -25,7 +25,7 @@ Copyright © [hx-run] [2024]. All rights reserved, except where otherwise noted.
 
 If you have any questions, suggestions, or feedback, feel free to reach out:
 
-- Email: [hx-run@principai.co]
+- Email: [info@principai.co]
 
 ---
 
