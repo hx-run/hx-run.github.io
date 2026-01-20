@@ -133,7 +133,7 @@ const config: Config = {
     },
     footer: {
       style: 'light',
-      copyright: `Copyright © 2022 hx-run, Inc.`,
+      copyright: `Copyright © 2025 hx-run, Inc.`,
     },
     prism: {
       theme: prismThemes.github,
