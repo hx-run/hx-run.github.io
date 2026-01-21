@@ -1,12 +1,12 @@
 ---
 title: Why interface based injection needs a token but class-based injection doesn't
+description: Typscript interface-based injection needs a token because typescript interfaces do not exist at runtime.
 authors: [hxrun]
 tags: [nestjs, abstraction, notes]
 ---
-
+Typscript interface-based injection needs a token because typescript interfaces do not exist at runtime.
 <!--truncate-->
-
-Typscript interface-based injection needs a token because typescript interfaces do not exist at runtime. Therefore, when using interfaces, you must:
+Therefore, when using interfaces, you must:
 - Create an injection token(string, symbol, or constant)
 - Register provider using that token
 - Inject explicitly with `@Inject(TOKEN)`
@@ -27,7 +27,7 @@ exports: [
 //*.service.ts
 ...
   constructor(
-    @Injecet(MAPPER) private readonly classMapper: IClassMapperHelper,
+    @Inject(MAPPER) private readonly classMapper: IClassMapperHelper,
   )
   {
   }
@@ -36,7 +36,7 @@ exports: [
 On the other hand class-based injection (or abstract class–based) doesn't need a token because classes exist at runtime. Nestjs can use the class constructor as the token automatically
 No need for: 
 - Custom provider tokens
-- @Inject() decorator 
+- `@Inject()` decorator 
 
 ```typescript
 //*.module.ts

@@ -328,6 +328,12 @@ article > header h2 {
   margin: 0;
 }
 
+article > header h1 {
+  font-size: 1.50rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
 /* Blog list date + read time */
 article > header:has(h2) > div {
   justify-self: end;
