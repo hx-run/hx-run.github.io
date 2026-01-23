@@ -237,14 +237,23 @@ aside nav[aria-label*="Blog"] ul > li.active > a {
   }
 
 .navbar__brand {
-  margin-right: 9rem;
+  margin-right: 6rem;
 }
 .navbar__item {
   font-weight: bold;
+  padding-right: 3rem;
 }
 
 /* Responsive adjustments */
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
+
+  .navbar__brand {
+    margin-right: 0rem;
+  }
+
+  .navbar__item {
+    padding-right: 2rem;
+  }
   aside nav[aria-label*="Blog"] > div[role="group"] {
     padding-right: 30px;
   }

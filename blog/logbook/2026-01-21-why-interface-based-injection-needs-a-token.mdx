@@ -1,0 +1,153 @@
+---
+title: Why interface based injection needs a token but class-based injection doesn't
+description: TypeScript interface-based injection needs a token because typescript interfaces do not exist at runtime.
+authors: [hxrun]
+tags: [nestjs, abstraction, logbook]
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Typescript interface-based injection needs a token because typescript interfaces do not exist at runtime.
+{/* truncate */}
+Therefore, when using interfaces, you must:
+- Create an injection token(string, symbol, or constant)
+- Register provider using that token
+- Inject explicitly with `@Inject(TOKEN)`
+
+<Tabs defaultValue="example.service.ts" groupId="code-samples">
+  <TabItem value="example.service.ts" label="example.service.ts">
+```typescript
+  import { Inject, Injectable } from '@nestjs/common';
+  import { MAPPER } from './core.token';
+  import { IClassMapperHelper } from './mapper.interface';
+
+  @Injectable()
+  export class ExampleService {
+    constructor(
+      @Inject(MAPPER) private readonly classMapper: IClassMapperHelper, // Need to use @Inject with token because IClassMapperHelper is none existant at runtime
+    ) {}
+
+    run() {
+      const source = { name: 'hxrun', age: 20 };
+
+      class UserDto {
+        name!: string;
+        age!: number;
+      }
+
+      return this.classMapper.map(source, UserDto);
+    }
+  }
+```
+  </TabItem>
+
+  <TabItem value="core.module.ts" label="core.module.ts">
+```typescript
+  import { Module } from '@nestjs/common';
+  import { MAPPER } from './core.token';
+  import { ClassMapperHelper } from './mapper.helper';
+
+  @Module({
+    providers: [
+      {
+        provide: MAPPER,
+        useClass: ClassMapperHelper,
+      },
+    ],
+    exports: [MAPPER],
+  })
+  export class CoreModule {}
+```
+  </TabItem>
+
+  <TabItem value="mapper.interface.ts" label="mapper.interface.ts">
+```typescript
+  export interface IClassMapperHelper {
+    map<TSource, TTarget>(
+      source: TSource,
+      target: new () => TTarget,
+    ): TTarget;
+  }
+```
+  </TabItem>
+
+  <TabItem value="mapper.helper.ts" label="mapper.helper.ts">
+```typescript
+  import { Injectable } from '@nestjs/common';
+  import { IClassMapperHelper } from './mapper.interface';
+
+  @Injectable()
+  export class ClassMapperHelper implements IClassMapperHelper {
+    map<TSource, TTarget>(
+      source: TSource,
+      Target: new () => TTarget,
+    ): TTarget {
+      return Object.assign(new Target(), source);
+    }
+  }
+```
+  </TabItem>
+</Tabs>
+
+On the other hand class-based injection (or abstract class–based) doesn't need a token because classes exist at runtime. Nestjs can use the class constructor as the token automatically
+No need for: 
+- Custom provider tokens
+- `@Inject()` decorator 
+
+<Tabs defaultValue="example.service.ts" groupId="code-samples">
+  <TabItem value="example.service.ts" label="example.service.ts">
+```typescript
+  import { Injectable } from '@nestjs/common';
+  import { ClassMapperHelper } from './mapper.helper';
+
+  @Injectable()
+  export class ExampleService {
+    constructor(
+      private readonly classMapper: ClassMapperHelper, // No need to use @Inject with token because ClassMapperHelper is a real class at runtime
+    ) {}
+
+    run() {
+      const source = { name: 'hxrun', age: 20 };
+
+      class UserDto {
+        name!: string;
+        age!: number;
+      }
+
+      return this.classMapper.map(source, UserDto);
+    }
+  }
+```
+  </TabItem>
+
+  <TabItem value="core.module.ts" label="core.module.ts">
+```typescript
+  import { Module } from '@nestjs/common';
+  import { ClassMapperHelper } from './mapper.helper';
+
+  @Module({
+    providers: [
+      ClassMapperHelper,
+    ],
+    exports: [ClassMapperHelper],
+  })
+  export class CoreModule {}
+```
+  </TabItem>
+
+  <TabItem value="mapper.helper.ts" label="mapper.helper.ts">
+```typescript
+  import { Injectable } from '@nestjs/common';
+
+  @Injectable()
+  export class ClassMapperHelper {
+    map<TSource, TTarget>(
+      source: TSource,
+      Target: new () => TTarget,
+    ): TTarget {
+      return Object.assign(new Target(), source);
+    }
+  }
+```
+  </TabItem>
+</Tabs>
