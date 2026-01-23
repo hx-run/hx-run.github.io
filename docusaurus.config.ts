@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 const config: Config = {
-  title: 'The Engineer’s Research Notebook',
+  title: 'The Engineer’s Notebook',
   tagline: '',
   favicon: 'img/hx-run-fff.svg',
 
@@ -38,41 +38,31 @@ const config: Config = {
   presets: [
     [
       'classic',
+      
       {
         docs: false,
         blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
+        gtag: {
+          trackingID: 'G-XRN2T5VDMP',
+          anonymizeIP: true,
+        },
+        
       } satisfies Preset.Options,
-
     ],
   ],
   plugins: [
     [
       '@docusaurus/plugin-content-blog',
       {
-        id: 'home',
+        id: 'logbook',
         routeBasePath: '/',
-        path: './blog/reflections',
-        blogTitle: 'Reflections',
-        blogDescription: 'Reflections category',
-        blogSidebarTitle: 'All Reflections', 
-        blogSidebarCount: 'ALL',
-        postsPerPage: 'ALL',
-        showReadingTime: true,
-        authorsMapPath: '../authors.yml'
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-blog',
-      {
-        id: 'papers',
-        routeBasePath: 'papers',
-        path: './blog/papers',
-        blogTitle: 'Papers',
-        blogDescription: 'Papers category',
-        blogSidebarTitle: 'All Papers', 
+        path: './blog/logbook',
+        blogTitle: 'Logbook',
+        blogDescription: 'Short, atomic engineering entries',
+        blogSidebarTitle: 'All Logbook Entries', 
         blogSidebarCount: 'ALL',
         postsPerPage: 'ALL',
         showReadingTime: true,
@@ -86,44 +76,59 @@ const config: Config = {
         routeBasePath: 'notes',
         path: './blog/notes',
         blogTitle: 'Notes',
-        blogDescription: 'Notes category',
-        blogSidebarTitle: 'All Notes',
+        blogDescription: 'More structured technical write-ups and guides',
+        blogSidebarTitle: 'All Notes', 
         blogSidebarCount: 'ALL',
         postsPerPage: 'ALL',
         showReadingTime: true,
         authorsMapPath: '../authors.yml'
       },
     ],
-    // [
-    //   '@docusaurus/plugin-content-blog',
-    //   {
-    //     id: 'projects',
-    //     routeBasePath: 'projects',
-    //     path: './blog/projects',
-    //     blogTitle: 'Projects',
-    //     blogDescription: 'Projects category',
-    //     blogSidebarTitle: 'All Projects',
-    //     blogSidebarCount: 'ALL',
-    //     postsPerPage: 'ALL',
-    //     showReadingTime: true,
-    //     authorsMapPath: '../authors.yml'
-    //   },
-    // ],
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'fieldcraft',
+        routeBasePath: 'fieldcraft',
+        path: './blog/fieldcraft',
+        blogTitle: 'Fieldcraft',
+        blogDescription: 'Practical knowledge learned in the field, beyond code',
+        blogSidebarTitle: 'All Fieldcraft',
+        blogSidebarCount: 'ALL',
+        postsPerPage: 'ALL',
+        showReadingTime: true,
+        authorsMapPath: '../authors.yml'
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'labs',
+        routeBasePath: 'labs',
+        path: './blog/labs',
+        blogTitle: 'Labs',
+        blogDescription: 'Hands-on experiments and shipped work',
+        blogSidebarTitle: 'What did I actually build?',
+        blogSidebarCount: 'ALL',
+        postsPerPage: 'ALL',
+        showReadingTime: true,
+        authorsMapPath: '../authors.yml'
+      },
+    ],
   ],
   themeConfig: {
     image: 'img/hx-run-fff.svg',
     navbar: {
-      title: 'hx-run | research notes',
+      title: 'hx-run | engineering notebook',
       logo: {
         alt: 'hx-run Logo',
         src: 'img/hx-run-a00.svg',
         srcDark: 'img/hx-run-eeb821.svg',
       },
       items: [
-        { label: '#home', to: '/' },
-        { label: '#papers', to: '/papers' },
+        { label: '#logbook', to: '/' },
         { label: '#notes', to: '/notes' },
-        // { label: '#projects', to: '/projects' },
+        { label: '#fieldcraft', to: '/fieldcraft' },
+        { label: '#labs', to: '/labs' },
         {
           href: 'https://github.com/hx-run',
           label: 'GitHub',
@@ -133,7 +138,7 @@ const config: Config = {
     },
     footer: {
       style: 'light',
-      copyright: `Copyright © 2025 hx-run, Inc.`,
+      copyright: `Copyright © 2025 hx-run`,
     },
     prism: {
       theme: prismThemes.github,

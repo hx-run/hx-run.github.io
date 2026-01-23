@@ -2,7 +2,7 @@
 title: Why interface based injection needs a token but class-based injection doesn't
 description: Typscript interface-based injection needs a token because typescript interfaces do not exist at runtime.
 authors: [hxrun]
-tags: [nestjs, abstraction, notes]
+tags: [nestjs, abstraction, logbook]
 ---
 Typscript interface-based injection needs a token because typescript interfaces do not exist at runtime.
 <!--truncate-->
